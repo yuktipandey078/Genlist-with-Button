@@ -1,0 +1,69 @@
+
+collections {
+
+   group { "elm/genlist";
+
+      parts {
+         part{ "bg";
+            type:RECT;
+            desc{ "default";
+               color:0 0 0 0;
+            }
+         }
+         part{ "glpart";
+            type:SWALLOW;
+            desc{ "default";
+               rel1.relative:0.0 0.0;
+               rel2.relative:1.0 1.0;
+            }
+
+         }
+         part { "elm.sw";
+            type:SWALLOW;
+            desc { "default";
+               rel1.relative:0.0 0.71;
+               rel2.relative:1.0 1.0;
+              // align:0.5 1;
+               min:70 70;
+               max:75 75;
+               visible:0;
+            }
+            desc{ "vis";
+               align:0.5 1;
+               min:80 80;
+               max:80 80;
+               visible:1;
+
+            }
+            desc{ "hide";
+               align:0.5 1;
+               min:80 80;
+               max:80 80;
+               visible:0;
+
+            }
+         }
+         programs {
+            program{ "ic";
+               signal:"mouse,clicked,*";
+               source:"elm.sw";
+               action:SIGNAL_EMIT "falana" "elm.sw";
+               after:"hide_btn";
+
+            }
+            program{ "hide_btn";
+               signal:"hide_ap";
+               source:"elm.sw";
+               action:STATE_SET "hide";
+               target:"elm.sw";
+            }
+            program{ "show_btn";
+               signal:"show_ap";
+               source:"elm.sw";
+               action:STATE_SET "vis";
+               target:"elm.sw";
+            }
+
+         }
+      }
+   }
